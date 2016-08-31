@@ -1,0 +1,57 @@
+<dom-module id="my-login">
+  <style>
+    :host {
+      display: block;
+    }
+
+    #formLogin {
+      margin-left: 35%;
+      margin-right: 20%;
+      margin-top: 20%;
+      margin-bottom: 20%;
+      width: 65%;
+    }
+
+    paper-material {
+      width: 50%;
+    }
+
+    paper-material h3 {
+      padding-top: 20px;
+      text-align: center;
+    }
+
+    paper-material paper-input {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+    paper-material paper-button {
+      margin-left: 20px;
+      margin-bottom: 20px;
+      margin-top: 20px;
+    }
+  </style>
+  <template>
+
+    <form id="formLogin" is="iron-form" action="/security/authentication" method="post">
+      <paper-material elevation="1">
+        <h3>Sistema Teste de Polymer</h3>
+        <paper-input label="E-mail" name="email" id="email" required auto-validate error-message="E-mail é obrigatório"></paper-input>
+        <paper-input type="password" label="Senha" name="senha" id="senha" required auto-validate error-message="Senha é obrigatório"></paper-input>
+        <paper-button raised on-tap="doLogin">Entrar</paper-button>
+      </paper-material>
+    </form>
+
+  </template>
+
+  <script>
+    Polymer({
+      is: 'my-login',
+      properties: {},
+      doLogin: function() {
+        document.getElementById('formLogin').submit();
+      }
+    });
+  </script>
+</dom-module>
