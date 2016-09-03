@@ -5,10 +5,7 @@
     }
 
     #formLogin {
-      margin-left: 35%;
-      margin-right: 20%;
-      margin-top: 20%;
-      margin-bottom: 20%;
+      margin: 10% 20% 10% 35%;
       width: 65%;
     }
 
@@ -31,6 +28,7 @@
       margin-bottom: 20px;
       margin-top: 20px;
     }
+
   </style>
   <template>
 
@@ -46,12 +44,29 @@
   </template>
 
   <script>
-    Polymer({
-      is: 'my-login',
-      properties: {},
-      doLogin: function() {
-        document.getElementById('formLogin').submit();
-      }
-    });
+    (function () {
+      Polymer({
+        is: 'my-login',
+        properties: {
+          email: {
+            type: String,
+            notify: true
+          },
+          user: {
+            type: Object
+          }
+        },
+        ready: function () {
+          if (window.user != null && window.user.isAuthenticated) {
+            this.set('user', window.user);
+          } else {
+            this.set('user', false);
+          }
+        },
+        doLogin: function () {
+          document.getElementById('formLogin').submit();
+        },
+      });
+    })();
   </script>
 </dom-module>

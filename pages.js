@@ -5,9 +5,9 @@ exports.index = {
     mode: 'try'
   },
   handler: function(request, reply) {
-    var user = null;
-    if (request.yar.get('user') != undefined) {
-      user = request.yar.get('user');
+    const user = {
+      isAuthenticated: request.auth.isAuthenticated,
+      isAdmin: true
     }
     reply.view('index', user);
   },

@@ -3,43 +3,43 @@
     :host {
       display: block;
     }
+
   </style>
   <template>
 
-    <template is="dom-if" if="{{user}}">
-      <h2>Hello [[prop1]]</h2>
+    <template is="dom-if" if="{{!user.isAuthenticated}}">
+      <my-login></my-login>
+    </template>
+
+    <template is="dom-if" if="{{user.isAuthenticated}}">
       <form id="formLogout" is="iron-form" action="/security/deauthentication" method="post">
         <paper-button raised on-tap="doLogout">Sair</paper-button>
       </form>
     </template>
 
-    <template is="dom-if" if="{{!user}}">
-      <my-login></my-login>
-    </template>
-
   </template>
 
   <script>
-    Polymer({
 
-      is: 'my-main',
+      Polymer({
 
-      properties: {
-        prop1: {
-          type: String,
-          value: 'Administrador Secreto',
+        is: 'my-main',
+
+        properties: {
+          user: {
+            type: Object
+          }
+        },
+        ready: function() {
+          if (window.user != null) {
+            this.set('user', window.user);
+          } else {
+            this.set('user', false);
+          }
+        },
+        doLogout: function() {
+          document.getElementById('formLogout').submit();
         }
-      },
-      ready: function() {
-        if (window.user != null) {
-          this.set('user', window.user);
-        } else {
-          this.set('user', false);
-        }
-      },
-      doLogout: function() {
-        document.getElementById('formLogout').submit();
-      }
-    });
+      });
   </script>
 </dom-module>

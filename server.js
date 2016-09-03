@@ -14,17 +14,19 @@ server.connection({
 });
 
 var options = {
-    storeBlank: false,
-    cookieOptions: {
-        password: 'the-password-must-be-at-least-32-characters-long',
-        isSecure: false
-    }
+  storeBlank: false,
+  cookieOptions: {
+    password: 'the-password-must-be-at-least-32-characters-long',
+    isSecure: false
+  }
 };
 
 server.register([
   require('inert'),
-  require('vision'),
-  {register: require('yar'), options: options},
+  require('vision'), {
+    register: require('yar'),
+    options: options
+  },
   require('hapi-auth-cookie')
 ], (err) => {
 
@@ -34,7 +36,7 @@ server.register([
 
   server.auth.strategy('session', 'cookie', true, {
     password: 'SessionAuth_Pé_Sword_Hapi_Server_Stats', //Use something more secure in production
-    redirectTo: '/', //If there is no session, redirect here
+    //redirectTo: '/', //If there is no session, redirect here
     ttl: 1 * 60 * 60 * 1000, // Set session to 1 day
     isSecure: false //Should be set to true (which is the default) in production
   });
@@ -62,6 +64,21 @@ server.register([
     },
     path: './',
     layout: 'index'
+  });
+
+  server.ext('onPreResponse', (request, reply) => {
+    if (request.response.isBoom) {
+      const err = request.response;
+      const errName = err.output.payload.error;
+      const message = err.output.payload.message;
+      const statusCode = err.output.payload.statusCode;
+      return reply.view('./src/error', {
+          statusCode: statusCode,
+          errName: errName,
+          message: message
+        }, { layout: 'src/error' }).code(statusCode);
+    }
+    reply.continue();
   });
 
   // Start the server
