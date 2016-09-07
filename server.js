@@ -23,10 +23,7 @@ var options = {
 
 server.register([
   require('inert'),
-  require('vision'), {
-    register: require('yar'),
-    options: options
-  },
+  require('vision'),
   require('hapi-auth-cookie')
 ], (err) => {
 
@@ -72,11 +69,13 @@ server.register([
       const errName = err.output.payload.error;
       const message = err.output.payload.message;
       const statusCode = err.output.payload.statusCode;
-      return reply.view('./src/error', {
+      return reply.view('index', {
           statusCode: statusCode,
           errName: errName,
-          message: message
-        }, { layout: 'src/error' }).code(statusCode);
+          message: message,
+          isAuthenticated: request.auth.isAuthenticated,
+          scopes: request.auth.credentials != null ? request.auth.credentials.scopes : ''
+        }).code(statusCode);
     }
     reply.continue();
   });

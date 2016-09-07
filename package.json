@@ -6,10 +6,6 @@
   "directories": {
     "test": "test"
   },
-  "dependencies": {
-    "hapi-error": "^1.1.3",
-    "yar": "^7.0.2"
-  },
   "devDependencies": {
     "bcrypt": "^0.8.7",
     "boom": "^3.0.0",
@@ -27,5 +23,6 @@
     "start": "node server.js"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {}
 }

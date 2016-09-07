@@ -20,6 +20,8 @@
   </template>
 
   <script>
+    (function() {
+      'use strict';
 
       Polymer({
 
@@ -30,16 +32,26 @@
             type: Object
           }
         },
+
         ready: function() {
-          if (window.user != null) {
+          if (window.user != null && window.user.isAuthenticated) {
             this.set('user', window.user);
           } else {
             this.set('user', false);
           }
+
+          if (window.globalMessage != null) {
+            let app = document.querySelector('#app');
+            app.$.toast.text = window.globalMessage;
+            app.$.toast.show();
+          }
         },
+
         doLogout: function() {
           document.getElementById('formLogout').submit();
         }
+
       });
+    })();
   </script>
 </dom-module>

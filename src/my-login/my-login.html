@@ -28,7 +28,6 @@
       margin-bottom: 20px;
       margin-top: 20px;
     }
-
   </style>
   <template>
 
@@ -44,9 +43,13 @@
   </template>
 
   <script>
-    (function () {
+    (function() {
+      'use stritct';
+
       Polymer({
+
         is: 'my-login',
+
         properties: {
           email: {
             type: String,
@@ -56,16 +59,25 @@
             type: Object
           }
         },
-        ready: function () {
+
+        ready: function() {
           if (window.user != null && window.user.isAuthenticated) {
             this.set('user', window.user);
           } else {
             this.set('user', false);
           }
+
+          if (window.globalMessage != null) {
+            let app = document.querySelector('#app');
+            app.$.toast.text = window.globalMessage;
+            app.$.toast.show();
+          }
         },
-        doLogin: function () {
+
+        doLogin: function() {
           document.getElementById('formLogin').submit();
-        },
+        }
+
       });
     })();
   </script>

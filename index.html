@@ -12,7 +12,8 @@
   <script>
     window.user = {};
     window.user.isAuthenticated = {{isAuthenticated}};
-    window.user.isAdmin = {{isAdmin}};
+    window.user.scopes = '{{scopes}}' || null;
+    window.globalMessage = '{{message}}' || null;
   </script>
   <style>
     #toast .toast-hide-button {

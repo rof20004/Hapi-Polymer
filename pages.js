@@ -7,8 +7,8 @@ exports.index = {
   handler: function(request, reply) {
     const user = {
       isAuthenticated: request.auth.isAuthenticated,
-      isAdmin: true
-    }
+      scopes: request.auth.credentials != null ? request.auth.credentials.scopes : ''
+    };
     reply.view('index', user);
   },
   plugins: {
