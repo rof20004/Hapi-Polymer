@@ -60,7 +60,7 @@
           }
         },
 
-        ready: function() {
+        ready: function(e) {
           if (window.user != null && window.user.isAuthenticated) {
             this.set('user', window.user);
           } else {
@@ -79,6 +79,7 @@
         }
 
       });
+
     })();
   </script>
 </dom-module>

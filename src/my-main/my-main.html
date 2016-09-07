@@ -3,7 +3,6 @@
     :host {
       display: block;
     }
-
   </style>
   <template>
 
@@ -12,6 +11,12 @@
     </template>
 
     <template is="dom-if" if="{{user.isAuthenticated}}">
+      <paper-header-panel>
+        <paper-toolbar>
+          <paper-icon-button icon="menu"></paper-icon-button>
+          <div class="middle title">Middle Title</div>
+        </paper-toolbar>
+      </paper-header-panel>
       <form id="formLogout" is="iron-form" action="/security/deauthentication" method="post">
         <paper-button raised on-tap="doLogout">Sair</paper-button>
       </form>
@@ -33,7 +38,7 @@
           }
         },
 
-        ready: function() {
+        ready: function(e) {
           if (window.user != null && window.user.isAuthenticated) {
             this.set('user', window.user);
           } else {
@@ -52,6 +57,7 @@
         }
 
       });
+
     })();
   </script>
 </dom-module>

@@ -40,12 +40,27 @@ server.register([
 
   server.route({
     method: "GET",
-    path: "/{path*}",
+    path: "/bower_components/{path*}",
     config: {
       auth: false,
       handler: {
         directory: {
-          path: "./",
+          path: "./bower_components",
+          listing: false,
+          index: false
+        }
+      }
+    }
+  });
+
+  server.route({
+    method: "GET",
+    path: "/src/{path*}",
+    config: {
+      auth: false,
+      handler: {
+        directory: {
+          path: "./src",
           listing: false,
           index: false
         }
