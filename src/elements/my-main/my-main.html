@@ -15,11 +15,13 @@
         <paper-toolbar>
           <paper-icon-button icon="menu"></paper-icon-button>
           <div class="middle title">Middle Title</div>
+          <span class="flex"></span>
+          <form id="formLogout" is="iron-form" action="/security/deauthentication" method="post">
+            <paper-icon-button id="btnLogout" icon="icons:exit-to-app" on-tap="doLogout"></paper-icon-button>
+            <paper-tooltip for="btnLogout" position="left" animation-delay="0">Sair da aplicação</paper-tooltip>
+          </form>
         </paper-toolbar>
       </paper-header-panel>
-      <form id="formLogout" is="iron-form" action="/security/deauthentication" method="post">
-        <paper-button raised on-tap="doLogout">Sair</paper-button>
-      </form>
     </template>
 
   </template>
@@ -40,9 +42,9 @@
 
         ready: function(e) {
           if (window.user != null && window.user.isAuthenticated) {
-            this.set('user', window.user);
+            this.user = window.user;
           } else {
-            this.set('user', false);
+            this.user = null;
           }
 
           if (window.globalMessage != null) {

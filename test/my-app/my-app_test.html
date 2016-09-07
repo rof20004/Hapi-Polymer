@@ -8,22 +8,22 @@
     <script src="../../../webcomponentsjs/webcomponents-lite.js"></script>
     <script src="../../../web-component-tester/browser.js"></script>
 
-    <link rel="import" href="../../src/teste-app/teste-app.html">
+    <link rel="import" href="../../src/elements/my-app/my-app.html">
   </head>
   <body>
 
     <test-fixture id="basic">
       <template>
-        <teste-app></teste-app>
+        <my-app></my-app>
       </template>
     </test-fixture>
 
     <script>
-      suite('teste-app', function() {
+      suite('my-app', function() {
 
         test('instantiating the element works', function() {
           var element = fixture('basic');
-          assert.equal(element.is, 'teste-app');
+          assert.equal(element.is, 'my-app');
         });
 
       });

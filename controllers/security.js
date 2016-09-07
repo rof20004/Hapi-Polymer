@@ -10,7 +10,7 @@ exports.authentication = {
     const user = request.payload;
     if (user.email.trim() != '' && user.senha.trim() != '') {
       request.cookieAuth.set(user);
-      return reply.redirect('/');
+      return reply.redirect('/home');
     }
     reply(Boom.unauthorized('Usuário ou senha inválidos'));
   },

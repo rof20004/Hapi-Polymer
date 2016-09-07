@@ -11,7 +11,7 @@
     "boom": "^3.0.0",
     "bower": "^1.7.9",
     "handlebars": "^4.0.5",
-    "hapi": "^13.5.0",
+    "hapi": "^15.0.3",
     "hapi-auth-cookie": "^6.1.1",
     "inert": "^4.0.0",
     "joi": "^7.0.1",
@@ -24,5 +24,7 @@
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {}
+  "dependencies": {
+    "hapi": "^15.0.3"
+  }
 }

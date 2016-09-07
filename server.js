@@ -13,14 +13,6 @@ server.connection({
   }
 });
 
-var options = {
-  storeBlank: false,
-  cookieOptions: {
-    password: 'the-password-must-be-at-least-32-characters-long',
-    isSecure: false
-  }
-};
-
 server.register([
   require('inert'),
   require('vision'),
@@ -84,6 +76,9 @@ server.register([
       const errName = err.output.payload.error;
       const message = err.output.payload.message;
       const statusCode = err.output.payload.statusCode;
+      if (statusCode === 404) {
+        return reply.redirect('/home');
+      }
       return reply.view('index', {
           statusCode: statusCode,
           errName: errName,
