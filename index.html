@@ -11,6 +11,7 @@
   <link rel="import" href="/src/elements.html">
   <script>
     window.user = {};
+    window.user.name = '{{name}}';
     window.user.isAuthenticated = {{isAuthenticated}};
     window.user.scopes = '{{scopes}}' || null;
     window.globalMessage = '{{message}}' || null;

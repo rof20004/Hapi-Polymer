@@ -10,6 +10,7 @@ exports.index = {
     }
 
     const user = {
+      name: request.auth.credentials != null ? request.auth.credentials.email : '',
       isAuthenticated: request.auth.isAuthenticated,
       scopes: request.auth.credentials != null ? request.auth.credentials.scopes : ''
     };
@@ -33,6 +34,7 @@ exports.home = {
     }
 
     const user = {
+      name: request.auth.credentials != null ? request.auth.credentials.email : '',
       isAuthenticated: request.auth.isAuthenticated,
       scopes: request.auth.credentials != null ? request.auth.credentials.scopes : ''
     };

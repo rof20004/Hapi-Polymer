@@ -3,6 +3,18 @@
     :host {
       display: block;
     }
+
+    .content {
+      margin-left: 26px;
+      margin-right: 26px;
+      height: 100%;
+    }
+
+    .content .welcome {
+      padding-top: 30px;
+      padding-bottom: 30px;
+      text-align: center;
+    }
   </style>
   <template>
 
@@ -11,17 +23,25 @@
     </template>
 
     <template is="dom-if" if="{{user.isAuthenticated}}">
+
       <paper-header-panel>
         <paper-toolbar>
           <paper-icon-button icon="menu"></paper-icon-button>
-          <div class="middle title">Middle Title</div>
+          <div class="middle title">Hapi + Polymer Test System</div>
           <span class="flex"></span>
           <form id="formLogout" is="iron-form" action="/security/deauthentication" method="post">
             <paper-icon-button id="btnLogout" icon="icons:exit-to-app" on-tap="doLogout"></paper-icon-button>
-            <paper-tooltip for="btnLogout" position="left" animation-delay="0">Sair da aplicação</paper-tooltip>
+            <paper-tooltip for="btnLogout" position="left" animation-delay="0" >Sair da aplicação</paper-tooltip>
           </form>
         </paper-toolbar>
       </paper-header-panel>
+
+      <div class="content">
+        <paper-material elevation="1">
+          <h2 class="welcome">Bem Vindo {{user.name}}</h2>
+        </paper-material>
+      </div>
+
     </template>
 
   </template>

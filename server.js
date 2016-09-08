@@ -83,6 +83,7 @@ server.register([
           statusCode: statusCode,
           errName: errName,
           message: message,
+          name: request.auth.credentials != null ? request.auth.credentials.name : '',
           isAuthenticated: request.auth.isAuthenticated,
           scopes: request.auth.credentials != null ? request.auth.credentials.scopes : ''
         }).code(statusCode);
